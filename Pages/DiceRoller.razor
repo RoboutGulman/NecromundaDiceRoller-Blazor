@@ -18,9 +18,13 @@
     <MatNumericUpDownField Label="АР"
                            @bind-Value=@Settings.WeaponSettings.ap
                            DecimalPlaces=0
-                           Minimum=1 Maximum=10>
+                           Minimum=-6 Maximum=+6>
     </MatNumericUpDownField>
 </p>
+
+<div>
+    <MatCheckbox @bind-Value="@Settings.WeaponSettings.isRapid" Label="Rapid Fire"></MatCheckbox>
+</div>
 
 <h2>Цель</h2>
 <p>
@@ -39,7 +43,17 @@
     </MatNumericUpDownField>
 </p>
 
-<button class="btn btn-primary" @onclick="Calculate">Посчитать вероятность</button>
+@if (!Processing)
+{
+    <button class="btn btn-primary" @onclick="Calculate">Посчитать вероятность</button>
+}
+
+
+@if (Processing)
+{
+    <MatProgressCircle Indeterminate="true" Size="MatProgressCircleSize.Large" />
+}
+
 @if (Results != null)
 {
 <MatTable Items="@Results" class="mat-elevation-z5">

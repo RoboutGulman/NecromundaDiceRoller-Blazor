@@ -32,11 +32,12 @@ namespace NecromundaDiceRoller
         }
 
         public List<Result>? Results = null;
+        public bool Processing = false;
 
-        public void Calculate()
+        public async Task RollCheck()
         {
             var toHit = new ToHitRollStage(Settings);
-            var diceRoller = new DiceRoller(Settings, toHit, []);
+            var diceRoller = new DiceRoller(Settings, toHit, [new ToWoundRollStage(Settings), new SaveRollStage(Settings)]);
 
             var dict = diceRoller.GetStatistics();
 
@@ -54,6 +55,15 @@ namespace NecromundaDiceRoller
                     Calculated = (double)pair.Value / sum
                 });
             }
+
+        }
+
+        public async Task Calculate()
+        {
+            Processing = true;
+            await Task.Delay(1); 
+            await RollCheck();
+            Processing = false;
         }
     }
 }

@@ -58,7 +58,9 @@ public class DiceRoller
 
         var diceNumber = GetNumberOfRollsOnStage();
 
-        for (int i = 0; i < diceNumber; i++)
+        var isRapid = _settings.WeaponSettings.isRapid;
+
+        for (int i = 0; i <=  (isRapid ? 3 : 1); i++)
         {
             result[i] = 0;
         }
@@ -70,17 +72,14 @@ public class DiceRoller
             var stageResult = _firstRollStage.GetStageResult([currentRoll[0]]);
             for (int i = 0; i < _rollStages.Count; i++)
             {
-                var currentStagesRolls = _settings.WeaponSettings.isRapid
+                var currentStagesRolls = isRapid
                     ? currentRoll.GetRange(i * 3 + 1, 3)
                     : currentRoll.GetRange(i + 1, 1);
 
                 stageResult = _rollStages[i].GetStageResult(stageResult, currentStagesRolls);
             }
 
-            if (!result.TryAdd(stageResult, 1))
-            {
-                result[stageResult]++;
-            }
+            result[stageResult]++;
         }
 
         return result;
