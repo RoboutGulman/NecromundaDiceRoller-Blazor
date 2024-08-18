@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "NecromundaDiceRoller-Blazor",
   "resources": {
-    "hash": "sha256-IOXZEamp1HWl5vJoiPIZjdu5MuJHzpcoIBsgB4H+FuM=",
+    "hash": "sha256-I16HqJQXNmZi21DjkUUsIM5NbsDy7QBnuQ+ca5SZGHI=",
     "jsModuleNative": {
       "dotnet.native.8.0.8.746giovk6l.js": "sha256-juC5sA7gHTLXFEhAKgdM2/RavswpwCtDfjYGsAz2FXg="
     },
@@ -33,7 +33,7 @@
       "Microsoft.Extensions.Primitives.wasm": "sha256-Ms2HR5Gpug/0uRAzdk4SUNT76Ml3CjFv9Jo+dUIMGac=",
       "Microsoft.JSInterop.wasm": "sha256-A3XmytLkxdiHir8YDzGgOQ6KLVnIyAipKBeFNyHrWNc=",
       "Microsoft.JSInterop.WebAssembly.wasm": "sha256-CQVLCKiSxLN5ghyJZG3mhnMGRROdqrbNUjtAXB0nWb8=",
-      "NecromundaDiceRoller-Blazor.wasm": "sha256-oG/c4yIb47KC/yF057snNK+d5mbh3SfOEmS88JjDIlg=",
+      "NecromundaDiceRoller-Blazor.wasm": "sha256-y7ZBXpQcG1hzMHMb1/SdLOR4zbI/zHjv0TuLxk8wsm0=",
       "System.Collections.Concurrent.wasm": "sha256-GZVFNA7CYsMWj/45cgyiPqosUkloXEWOtk49p2WQ4Uk=",
       "System.Collections.wasm": "sha256-H2oRpHA+gA1vltWT1E5o0ZN/Padi1pC7NGp354knktc=",
       "System.ComponentModel.wasm": "sha256-GPAg/lqvtlGqfal3j6EPgQ+6mqlusQ30qCeS8LYv8ws=",
