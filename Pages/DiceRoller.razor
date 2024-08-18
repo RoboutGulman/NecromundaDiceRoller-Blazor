@@ -1,0 +1,56 @@
+@page "/"
+@using MatBlazor
+@inherits NecromundaDiceRoller.DiceRollerComponent
+
+<PageTitle>Dice Roller</PageTitle>
+
+<h1>Настройки</h1>
+
+<h2>Стрелок</h2>
+<p>
+    <MatNumericUpDownField Label="Сила"
+                           @bind-Value=@Settings.WeaponSettings.str
+                           DecimalPlaces=0
+                           Minimum=1 Maximum=10>
+    </MatNumericUpDownField>
+</p>
+<p>
+    <MatNumericUpDownField Label="АР"
+                           @bind-Value=@Settings.WeaponSettings.ap
+                           DecimalPlaces=0
+                           Minimum=1 Maximum=10>
+    </MatNumericUpDownField>
+</p>
+
+<h2>Цель</h2>
+<p>
+    <MatNumericUpDownField Label="Стойкость"
+                           @bind-Value=@Settings.TargetSettings.t
+                           DecimalPlaces=0
+                           Minimum=1 Maximum=10>
+    </MatNumericUpDownField>
+</p>
+
+<p>
+    <MatNumericUpDownField Label="Спасбросок"
+                           @bind-Value=@Settings.TargetSettings.sv
+                           DecimalPlaces=0
+                           Minimum=2 Maximum=7>
+    </MatNumericUpDownField>
+</p>
+
+<button class="btn btn-primary" @onclick="Calculate">Посчитать вероятность</button>
+@if (Results != null)
+{
+<MatTable Items="@Results" class="mat-elevation-z5">
+    <MatTableHeader>
+        <th>Количество успехов</th>
+        <th>Вероятность</th>
+    </MatTableHeader>
+    <MatTableRow>
+        <td>@context.NumberOfSuccesses</td>
+        <td>@String.Format("{0:P2}", context.Calculated) </td>
+    </MatTableRow>
+</MatTable>
+}
+
