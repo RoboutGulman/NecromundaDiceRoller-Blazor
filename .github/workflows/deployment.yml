@@ -25,7 +25,7 @@ jobs:
       run: sed -i 's/<base href="\/" \/>/<base href="\/NecromundaDiceRoller-Blazor\/" \/>/g' ./bin/release/net8.0/publish/wwwroot/index.html
 
     - name: add imports
-      run: sed -i '<link href="_content\/MatBlazor\/dist\/matBlazor.css" rel="stylesheet"\ /> <script src="_content\/MatBlazor\/dist\/matBlazor.js"><\/script>' ./bin/release/net8.0/publish/wwwroot/index.html
+      run: sed -i '13i/<link href="_content\/MatBlazor\/dist\/matBlazor.css" rel="stylesheet"\ /> /<script src="_content\/MatBlazor\/dist\/matBlazor.js"/>/<\/script>' ./bin/release/net8.0/publish/wwwroot/index.html
       
     - name: Add .nojekyll file
       run: touch ./bin/release/net8.0/publish/wwwroot/.nojekyll
