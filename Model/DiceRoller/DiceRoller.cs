@@ -25,30 +25,33 @@ public class DiceRoller
         return _rollStages.Count + 1;
     }
     
-    public static List<int> CovertInto6Base(int base10Number, int length)
+    public static int[] CovertInto6Base(int base10Number, int length)
     {
-        var result = new List<int>();
+        int[] result = new int[length];
         if (base10Number == 0)
         {
             for (int i = 0; i < length; i++)
             {
-                result.Add(6);
+                result[i] = 6;
             }
             return result;
         }
-        
+
+        var y = 1;
         while (base10Number != 0)
         {
             var converted = base10Number % 6;
-            result.Add(converted != 0 ? converted : 6);
+            result[^y] = converted != 0 ? converted : 6;
+            y++;
             base10Number /= 6;
         }
 
-        for (int i = result.Count; i < length; i++)
+        while (y <= length)
         {
-            result.Add(6);
+            result[^y] = 6;
+            y++;
         }
-        result.Reverse();
+
         return result;
     }
 
@@ -68,15 +71,15 @@ public class DiceRoller
         for (int seed = 0; seed < Math.Pow(6, diceNumber); seed++)
         {
             var currentRoll = CovertInto6Base(seed, diceNumber);
-
-            var stageResult = _firstRollStage.GetStageResult([currentRoll[0]]);
+            
+            var stageResult = _firstRollStage.GetStageResult(currentRoll);
             for (int i = 0; i < _rollStages.Count; i++)
             {
-                var currentStagesRolls = isRapid
-                    ? currentRoll.GetRange(i * 3 + 1, 3)
-                    : currentRoll.GetRange(i + 1, 1);
+                var offset = isRapid
+                    ? i * 3 + 1
+                    : i + 1;
 
-                stageResult = _rollStages[i].GetStageResult(stageResult, currentStagesRolls);
+                stageResult = _rollStages[i].GetStageResult(stageResult, currentRoll, offset);
             }
 
             result[stageResult]++;

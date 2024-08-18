@@ -12,13 +12,13 @@ public class ToWoundRollStage(Settings settings): IRollStage
         if (str <= t / 2) return 6;
         return 5;
     }
-    public int GetStageResult(int previousStageResult, List<int> rolls)
+    public int GetStageResult(int previousStageResult, int[] rolls, int offset)
     {
         var result = 0;
         var rollToWound = RollToWound();
         for (var i = 0; i < previousStageResult; i++)
         {
-            var currentRoll = rolls[i];
+            var currentRoll = rolls[offset + i];
             if (currentRoll >= rollToWound)
                 result++;
         }

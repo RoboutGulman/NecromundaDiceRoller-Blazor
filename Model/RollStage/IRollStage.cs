@@ -2,5 +2,5 @@ namespace NecromundaDiceRoller.Model.RollStage;
 
 public interface IRollStage
 {
-    public int GetStageResult(int previousStageResult, List<int> rolls);
+    public int GetStageResult(int previousStageResult, int[] rolls, int offset);
 }
